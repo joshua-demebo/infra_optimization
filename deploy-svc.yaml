@@ -1,0 +1,35 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: easypay
+  name: easypay
+  namespace: infra-optimize-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: easypay
+  template:
+    metadata:
+      labels:
+        app: easypay
+    spec:
+      containers:
+      - image: easypay20221111100704.azurecr.io/easypay:latest
+        name: easypay-app
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: easypay
+  namespace: infra-optimize-ns
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: easypay

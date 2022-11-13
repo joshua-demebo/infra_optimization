@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod
+  namespace: infra-optimize-ns
+  labels:
+    app: easypay
+spec:
+  containers:
+    - name: redis
+      image: redis
+      ports:
+        - containerPort: 6379

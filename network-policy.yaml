@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: access-easypay
+  namespace: infra-optimize-ns
+spec:
+  podSelector:
+    matchLabels:
+      app: easypay
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          access: "true"
